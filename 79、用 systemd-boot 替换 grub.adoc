@@ -188,6 +188,9 @@ systemctl enable --now systemd-boot-update.service
 
 [source, sh]
 ----
+echo '[main]' >> /etc/dnf/plugins/post-transaction-actions.conf
+mkdir post-transaction-actions.d
+echo '*:in:kernel-install add $(uname -r) /usr/lib/modules/$(uname -r)/vmlinuz' >> /etc/dnf/plugins/post-transaction-actions.d/kernel-install.action
 ----
 
 
