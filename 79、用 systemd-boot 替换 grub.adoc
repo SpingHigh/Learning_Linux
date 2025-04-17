@@ -184,6 +184,11 @@ systemd附带了systemd-boot-update.service。启用此服务将在下次启动�
 systemctl enable --now systemd-boot-update.service
 ----
 
+通过 `rpm -q --scripts kernel-core-<版本号>` 获得的脚本中，`posttrans scriptlet` 对应的脚本有调用 `kernel-install add` 添加新启动条目的流程。
+
+可能 Fedora 已经通过 `kernel-install` 统一管理 grub 和 systemd-boot 条目的更新了。
+
+***
 利用DNF post-transaction-actions Plugin 可以设置在每次更新完系统时自动将kernel的改动更新到efi分区中。
 
 [source, sh]
@@ -192,7 +197,7 @@ echo '[main]' >> /etc/dnf/plugins/post-transaction-actions.conf
 mkdir post-transaction-actions.d
 echo '*:in:kernel-install add $(uname -r) /usr/lib/modules/$(uname -r)/vmlinuz' >> /etc/dnf/plugins/post-transaction-actions.d/kernel-install.action
 ----
-
+***
 
 
 
