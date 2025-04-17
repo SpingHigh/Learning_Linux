@@ -188,9 +188,9 @@ systemctl enable --now systemd-boot-update.service
 
 可能 Fedora 已经通过 `kernel-install` 统一管理 grub 和 systemd-boot 条目的更新了。
 
-[废弃方案]
+[IMPORTANT]
 ====
-利用DNF post-transaction-actions Plugin 可以设置在每次更新完系统时自动将kernel的改动更新到efi分区中。
+废弃方案：利用DNF post-transaction-actions Plugin 可以设置在每次更新完系统时自动将kernel的改动更新到efi分区中。
 
 [source, sh]
 ----
